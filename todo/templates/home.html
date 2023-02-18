@@ -1,9 +1,11 @@
-{% extends 'todo/layout.html' %}
+{% extends 'layout.html' %}
 {% block content %}
-    <h1> lista tareas</h1>
+    <h1> lista de tareas</h1>
     <ul>
-        {% for tarea in tareas%}
-        <li> {{ tarea.tarea }} </li>
+        {% for tarea in tareas %}
+        <li> {{ tarea }} </li>
+        <button> <a herf="{% url 'eliminar' tarea.id %} ">eliminar </a></button>
+        <button> <a herf="{% url 'editar' tarea.id %} ">editar </a></button>
         {% endfor %}
     </ul>
 {% endblock %}

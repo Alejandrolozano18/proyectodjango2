@@ -1,0 +1,8 @@
+{% {% extends 'layout.html' %}
+{% block conten %}
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button> editar tarea </button>
+</form>
+{% endblock %}

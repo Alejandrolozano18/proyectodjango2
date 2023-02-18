@@ -14,7 +14,24 @@ def agregar(request):
         if form.is_valid():
             form.save()
             return redirect('home')
-        else:
-            form = TareaForm()
-        context = {'form':form}
-        return render(request,'agregar.html',context)
+    else:
+        form = TareaForm()
+    context = {'form':form}
+    return render(request,'agregar.html',context)
+
+def eliminar(request,tarea_id):
+    tarea=tarea.objects.get(id=tarea_id)
+    tarea.delete()
+    return redirect('home')
+
+def editar(request,tarea_id):
+    tarea=tarea.objects.get(id=tarea_id)
+    if request.method == "post":
+        form = TareaForm(request.POST,instance=tarea)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = TareaForm(instance=tarea)
+    context = {'form':form}
+    return render(request,'editar.html',context)
